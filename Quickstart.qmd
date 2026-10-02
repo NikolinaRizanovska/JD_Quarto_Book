@@ -75,7 +75,7 @@ From Excel
 | Tramo-Seats | tramoseats    | Decomposition of the time series based on RegARIMA modelling                                                                                         |
 | X-13-ARIMA  | x13           | Combination of RegARIMA modelling for calendar effect and moving average based decomposition (X-11) for the extraction of the seasonal effect        |
 
-Full documentation of the Seats method can be found [here](https://jdemetra-new-documentation.netlify.app/m-x11-decomposition), while all details on X-11 can be found [here](https://jdemetra-new-documentation.netlify.app/m-x11-decomposition).
+Full documentation of the Seats method can be found [here](#m-seats), while all details on X-11 can be found [here](#m-X11).
 
 ## Specifications
 

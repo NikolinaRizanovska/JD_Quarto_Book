@@ -18,9 +18,9 @@ As explained in the corresponding Readme files on [Github](https://github.com/rj
 
 ### Configuration needed
 
--   To run packages based on version 3.x: Java 21 or higher: how to get a portable Java and link it with R on your computer is explained [here](#Rconfig)
+- To run packages based on version 3.x: Java 21 or higher: how to get a portable Java and link it with R on your computer is explained [here](#Rconfig)
 
--   To run packages based on version 2.x: Java 8 or higher
+- To run packages based on version 2.x: Java 8 or higher
 
 ## Algorithms available in R
 
@@ -29,13 +29,13 @@ As explained in the corresponding Readme files on [Github](https://github.com/rj
 #### Using JDemetra+ version 3.x
 
 | Algorithm | Package | Comments |
-|------------------|------------------|------------------------------------|
+|-------------------|-------------------|----------------------------------|
 | X-13-ARIMA | rjd3x13 | Reg-ARIMA and X-11 decomposition available independently |
-| Extended X-11 | rjd3x11plus | Extended for high-frequency (infra-monthly) data and Trend estimation with local polynomial filters |
+| Extended X-11 | rjd3highfreq | Extended for high-frequency (infra-monthly) data and Trend estimation with local polynomial filters |
 | Tramo-Seats | rjd3tramoseats | Tramo available independently |
 | Extended Tramo | rjd3highfreq | Extended for high-frequency data |
 | Extended Seats | rjd3highfreq | Extended for high-frequency data |
-| STL+ | rjd3stl | Airline based preadjustment and high-frequency data extension |
+| STL+ | rjd3highfreq | Airline based preadjustment and high-frequency data extension |
 | Basic Structural Models | rjd3sts | State space framework |
 
 Version 3.x includes [Revision Policies](#a-rev-pol) in X-13 and Tramo-Seats.
@@ -45,16 +45,16 @@ More details on functions parameters and retrieving output in the chapter dedica
 #### Using JDemetra+ version 2.x
 
 | Algorithm | Package | Comments |
-|------------------|------------------|-------------------------------------|
+|-------------------|-------------------|-----------------------------------|
 | X-13-ARIMA | RJDemetra | Reg-ARIMA and X-11 decomposition available independently |
 | Tramo-Seats | RJDemetra | Tramo available independently |
 
 ### Filtering and Trend estimation
 
-| Algorithm                         | Package                  |
-|-----------------------------------|--------------------------|
-| Moving average functions          | rjd3filters              |
-| Local Polynomial Trend Estimation | rjd3filters, rjd3x11plus |
+| Algorithm                         | Package                   |
+|-----------------------------------|---------------------------|
+| Moving average functions          | rjd3filters               |
+| Local Polynomial Trend Estimation | rjd3filters, rjd3highfreq |
 
 ### Benchmarking
 
@@ -89,12 +89,11 @@ More details on functions parameters and retrieving output in the chapter dedica
 
 ### Nowcasting
 
-Nowcasting with JDemetra+ is available via the rjd3nowcasting package 
+Nowcasting with JDemetra+ is available via the rjd3nowcasting package
 
 Documentation [here](https://rjdverse.github.io/rjd3nowcasting/)
 
 <!-- algos à detailler -->
-
 
 <!-- ### Outlier detection  -->
 
@@ -102,8 +101,7 @@ Documentation [here](https://rjdverse.github.io/rjd3nowcasting/)
 
 Revision analysis on vintages can be performed with rjd3revision package.
 
-Documentation [here](https://rjdverse.github.io/rjd3revisions/)
-<!-- TO BE ADDED -->
+Documentation [here](https://rjdverse.github.io/rjd3revisions/) <!-- TO BE ADDED -->
 
 <!-- ## Time series tools {#t-r-packs-tstools} -->
 
@@ -124,25 +122,25 @@ The packages listed below contain utility functions useful when running a season
 | Package       | JD+ version | Comments                     |
 |---------------|-------------|------------------------------|
 | rjwsacruncher | 2.x and 3.x | estimation update and output |
-| JDCruncheR    | 2.x and 3.x | Quality Report               |
+| rjd3qr        | 2.x and 3.x | Quality Report               |
 
 ### Wrangling JD+ workspaces
 
 A workspace is a specific JDemetra+ data format (`.xml` files) allowing to use the graphical user interface (GUI) and the cruncher.
 
 | Package | JD+ version | Comments |
-|------------------|------------------|------------------------------------|
+|-------------------|-------------------|----------------------------------|
 | rjd3providers | 3.x | manage input files, update metadata |
 | rjd3workspace | 3.x | set specifications, open, create, save merge workspaces |
 | rjdworkspace | 2.x | idem |
 
 ## Building a production process of SA series
 
-rjd3production package is a wrapper with functions encompassing a whole stage of a production process
+**{rjd3production}** package is a wrapper with functions encompassing a whole stage of a production process
 
 Documentation [here](https://inseefr.github.io/rjd3production/)
 
-More information on production processes can be found [here](https://saproductionwithjdemetraandr.netlify.app/)
+More information on production processes can be found [here](https://prod.jdemetra.org/)
 
 ## Generating enhanced output in SA estimation
 

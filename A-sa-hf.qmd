@@ -1,22 +1,22 @@
-# SA of high-frequency data {.unnumbered #a-sa-hf}
+# SA of high-frequency data {#a-sa-hf .unnumbered}
 
-## In this chapter 
+## In this chapter
 
 The sections below provide guidance on seasonal adjustment of infra-monthly, or high-frequency (HF), time-series data with JDemetra+ tailored algorithms.
 
 Currently available topics:
 
--   description of HF data specificities
+- description of HF data specificities
 
--   R functions for pre-treatment, extended X-11 and extended Seats
+- R functions for pre-treatment, extended X-11 and extended Seats
 
 Up coming content:
 
--   Graphical User Interface 3.x functionalities for HF data
+- Graphical User Interface 3.x functionalities for HF data
 
--   STL functions
+- STL functions
 
--   State space framework
+- State space framework
 
 ## Data specificities
 
@@ -35,28 +35,28 @@ HF data often display multiple seasonal patterns with potentially non-integer pe
 ## Tailored algorithms in JDemetra+
 
 | Col1          | Algorithm                             | GUI v 3.x | R package    |
-|---------------|---------------------------------------|-----------|--------------|
+|--------------|------------------------------|--------------|--------------|
 | Pre-treatment | Extended Airline Model                | ✔️        | rjd3highfreq |
 | Decomposition | Extended Seats Extended Airline Model | ✔️        | rjd3highfreq |
-|               | Extended X-11                         | ✔️        | rjd3x11plus  |
-|               | Extended STL                          | ✖        | rjd3stl      |
-| One-Step      | SSF Framework                         | ✖        | rjd3sts      |
+|               | Extended X-11                         | ✔️        | rjd3highfreq |
+|               | Extended STL                          | ✖         | rjd3highfreq |
+| One-Step      | SSF Framework                         | ✖         | rjd3sts      |
 
 ### SA algorithms extended for high-frequency data
 
 All algorithms are available via an R package and will be available in GUI (in target v 3.x version)
 
--   Extended Airline estimation, reg-ARIMA like (`rjd3highfreq` and GUI )
+- Extended Airline estimation, reg-ARIMA like (`rjd3highfreq` and GUI )
 
--   Extended Airline Decomposition, Seats like (`rjd3highfreq` and GUI )
+- Extended Airline Decomposition, Seats like (`rjd3highfreq` and GUI )
 
--   MX12+ (`rjd3x11plus`, GUI upcoming)
+- MX12+ (`rjd3highfreq`, GUI upcoming)
 
--   MSTL+ (`rjd3stl` and in GUI)
+- MSTL+ (`rjd3highfreq` and in GUI)
 
--   MSTS (`rjd3sts`, GUI upcoming)
+- MSTS (`rjd3sts`, GUI upcoming)
 
-### Data frequencies and seasonal patterns 
+### Data frequencies and seasonal patterns
 
 In the Graphical User Interface (display constraints)
 
@@ -69,9 +69,6 @@ In corresponding R packages:
 - no constraint on data input as no TS structure (numeric vector)
 
 - any seasonal patters, positive numbers
-
-
-
 
 ## Unobserved Components
 
@@ -89,9 +86,9 @@ $$
 
 The decomposition is done iteratively periodicity by periodicity starting with the smallest one (highest frequency) as:
 
--   highest frequencies usually display the biggest and most stable variations
+- highest frequencies usually display the biggest and most stable variations
 
--   cycles of highest frequencies can mix up with lower ones
+- cycles of highest frequencies can mix up with lower ones
 
 ## Identifying seasonal patterns
 
@@ -142,7 +139,7 @@ $$
 \epsilon_t \overset{iid}{\sim} \text{N}(0,\sigma^2_{\epsilon}) 
 $$
 
-with 
+with
 
 $$
 1 - B^{365.25} = 1 - (0.75B^{365} + 0.25B^{366})
@@ -218,17 +215,17 @@ $$
 
 The first trend estimation is thanks to a generalization of the centred and symmetrical moving averages with an order equal to the periodicity $p$.
 
--   filter length $l$: smallest odd integer greater than $p$
+- filter length $l$: smallest odd integer greater than $p$
 
--   examples: $p=7 \rightarrow l=7$, $p=12 \rightarrow l=13$, $p=365.25 \rightarrow l=367$, $p=52.18 \rightarrow l=53$
+- examples: $p=7 \rightarrow l=7$, $p=12 \rightarrow l=13$, $p=365.25 \rightarrow l=367$, $p=52.18 \rightarrow l=53$
 
--   central coefficients $1/p$ (1/12,1/7, 1/365.25)
+- central coefficients $1/p$ (1/12,1/7, 1/365.25)
 
--   end-point coefficients $\mathbb{I} \{\text{$E(p)$ even}\} +(p-E(p)) /2p$
+- end-point coefficients $\mathbb{I} \{\text{$E(p)$ even}\} +(p-E(p)) /2p$
 
--   example for $p=12$: ($1/12$ and $1/24$) (we fall back on $M_{2\times12}$ of the monthly case
+- example for $p=12$: ($1/12$ and $1/24$) (we fall back on $M_{2\times12}$ of the monthly case
 
--   example for $p=365.25$: ($1/365.25$ and $0.25/(2*365.25)$)
+- example for $p=365.25$: ($1/365.25$ and $0.25/(2*365.25)$)
 
 #### Modification of seasonality extraction filters
 
@@ -299,15 +296,15 @@ For the time being, seasonal adjustment processing in rjd3highfreq cannot be enc
 
 The user has to run the steps one by one, here is an example with $p=7$ and $p=365.25$
 
--   computation of the linearized series $Y_{lin}=ExtendedAirline(Y)$
+- computation of the linearized series $Y_{lin}=ExtendedAirline(Y)$
 
--   computation of the calendar corrected series $Y_{cal}$
+- computation of the calendar corrected series $Y_{cal}$
 
--   computation of $S_{7}$ by decomposition of the linearized series
+- computation of $S_{7}$ by decomposition of the linearized series
 
--   computation of $S_{365.25}$ by decomposition of the seasonally adjusted series with $p=7$
+- computation of $S_{365.25}$ by decomposition of the seasonally adjusted series with $p=7$
 
--   finally adjusted series $sa_{final} = Y_{cal}/S_{7}/S_{365.25}$ (if multiplicative model)
+- finally adjusted series $sa_{final} = Y_{cal}/S_{7}/S_{365.25}$ (if multiplicative model)
 
 ### STL decomposition
 

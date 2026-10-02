@@ -444,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#updating-a-workspace-with-rjwsacruncher" id="toc-updating-a-workspace-with-rjwsacruncher" class="nav-link" data-scroll-target="#updating-a-workspace-with-rjwsacruncher">Updating a workspace with rjwsacruncher</a></li>
   <li><a href="#configuring-output-options" id="toc-configuring-output-options" class="nav-link" data-scroll-target="#configuring-output-options">Configuring output options</a></li>
   </ul></li>
-  <li><a href="#quality-report-with-jdcruncher" id="toc-quality-report-with-jdcruncher" class="nav-link" data-scroll-target="#quality-report-with-jdcruncher">Quality Report with JDCruncheR</a>
+  <li><a href="#quality-report-with-rjd3qr" id="toc-quality-report-with-rjd3qr" class="nav-link" data-scroll-target="#quality-report-with-rjd3qr">Quality Report with rjd3qr</a>
   <ul class="collapse">
   <li><a href="#main-steps" id="toc-main-steps" class="nav-link" data-scroll-target="#main-steps">Main steps</a></li>
   <li><a href="#piling-up-results" id="toc-piling-up-results" class="nav-link" data-scroll-target="#piling-up-results">Piling up results</a></li>
@@ -524,19 +524,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Two R packages are currently available</p>
 <ul>
 <li><p><a href="https://github.com/AQLT/rjwsacruncher">rjwsacruncher</a> (on CRAN): workspace update and output production</p></li>
-<li><p><a href="https://github.com/InseeFr/JDCruncheR">JDCruncheR</a> (on CRAN): adds a quality report</p></li>
+<li><p><a href="https://github.com/InseeFr/rjd3qr">rjd3qr</a> (on CRAN): adds a quality report</p></li>
 </ul>
 <section id="installation" class="level4">
 <h4 class="anchored" data-anchor-id="installation">Installation</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rjwsacruncher"</span>, <span class="st">"JDCruncheR"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"rjwsacruncher"</span>, <span class="st">"rjd3qr"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loading" class="level4">
 <h4 class="anchored" data-anchor-id="loading">Loading</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rjwsacruncher"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"JDCruncheR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rjd3qr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="connecting-the-cruncher-module" class="level4">
@@ -622,9 +622,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="quality-report-with-jdcruncher" class="level2">
-<h2 class="anchored" data-anchor-id="quality-report-with-jdcruncher">Quality Report with JDCruncheR</h2>
-<p>The JDCruncheR package:</p>
+<section id="quality-report-with-rjd3qr" class="level2">
+<h2 class="anchored" data-anchor-id="quality-report-with-rjd3qr">Quality Report with rjd3qr</h2>
+<p>The <strong>rjd3qr</strong> package:</p>
 <ul>
 <li><p>computes a quality score from the diagnostics produced by JDemetra+</p></li>
 <li><p>creates a quality report</p></li>

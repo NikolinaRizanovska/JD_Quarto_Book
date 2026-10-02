@@ -1,4 +1,4 @@
-# SA of high-frequency data {.unnumbered #m-sa-hf}
+# SA of high-frequency data {#m-sa-hf .unnumbered}
 
 ## Overview
 
@@ -6,17 +6,17 @@ This chapter provides guidance on seasonal adjustment of infra-monthly, or high-
 
 Currently available topics:
 
--   description of HF data specificities
+- description of HF data specificities
 
--   R functions for pre-treatment, extended X-11 and extended Seats
+- R functions for pre-treatment, extended X-11 and extended Seats
 
 Topics under construction
 
--   Graphical User Interface 3.x functionalities for HF data
+- Graphical User Interface 3.x functionalities for HF data
 
--   STL functions
+- STL functions
 
--   State space framework
+- State space framework
 
 ## Data specificities
 
@@ -35,22 +35,22 @@ HF data often display multiple seasonal patterns with potentially non-integer pe
 ## Tailored algorithms in JDemetra+
 
 | Col1          | Algorithm                             | GUI v 3.x | R package    |
-|---------------|---------------------------------------|-----------|--------------|
+|--------------|------------------------------|--------------|--------------|
 | Pre-treatment | Extended Airline Model                | ✔️        | rjd3highfreq |
 | Decomposition | Extended Seats Extended Airline Model | ✔️        | rjd3highfreq |
-|               | Extended X-11                         | ✔️        | rjd3x11plus  |
-|               | Extended STL                          | ✖        | rjd3stl      |
-| One-Step      | SSF Framework                         | ✖        | rjd3sts      |
+|               | Extended X-11                         | ✔️        | rjd3highfreq |
+|               | Extended STL                          | ✖         | rjd3highfreq |
+| One-Step      | SSF Framework                         | ✖         | rjd3sts      |
 
 ## Unobserved Components
 
 ### Raw series decomposition
 
-![![**Decomposition diagram**]](All_images/SA_HF_unobs_comps.png)
+![\![**Decomposition diagram**\]](All_images/SA_HF_unobs_comps.png)
 
 ### Multiple seasonal patterns
 
-HF data often contain multiple seasonal patterns. For example, daily economic time series often display strong infra-weekly and infra-yearly seasonality. An infra-monthly seasonal pattern may also be present, but its strength is usually less pronounced in practice. In theory, the full decomposition of the seasonal component in daily data is given by: 
+HF data often contain multiple seasonal patterns. For example, daily economic time series often display strong infra-weekly and infra-yearly seasonality. An infra-monthly seasonal pattern may also be present, but its strength is usually less pronounced in practice. In theory, the full decomposition of the seasonal component in daily data is given by:
 
 $$
 S_{t}= S_{t,7} \circ S_{t,30.44} \circ S_{t,365.25}
@@ -58,9 +58,9 @@ $$
 
 The decomposition is done iteratively periodicity by periodicity starting with the smallest one (highest frequency) as:
 
--   highest frequencies usually display the biggest and most stable variations
+- highest frequencies usually display the biggest and most stable variations
 
--   cycles of highest frequencies can mix up with lower ones
+- cycles of highest frequencies can mix up with lower ones
 
 ## Identifying seasonal patterns
 
@@ -70,7 +70,7 @@ JDemetra+ provides the Canova-Hansen test in the rjd3toolkit package.
 
 In classical X-13-ARIMA and Tramo-Seats, a pre-adjustment step is performed to remove deterministic effects, such as outliers and calendar effects, with a Reg-ARIMA model. In the extended version for HF data, it is also the case with an **extended Airline model**.
 
-A general Reg-ARIMA model is written as follows: 
+A general Reg-ARIMA model is written as follows:
 
 $$
 \left(Y_t - \sum {\alpha_i}X_{it}\right) \sim ARIMA(p,d,q)(P,D,Q)
@@ -173,7 +173,7 @@ pre_adjustment <- rjd3highfreq::fractionalAirlineEstimation(y_raw,
 
 ## Decomposition
 
-### Extended X-11
+### FExtended X-11
 
 X-11 is the decomposition module of [X-13-ARIMA](A-sa.qmd), the linearized series from the pre-adjustment step is split into seasonal ($S$), trend ($T$) and irregular ($I$) components. In case of multiple periodicities the decomposition is done periodicity by periodicity starting with the smallest one. Global structure of the iterations is the same as in "classical" X-11 but modifications were introduced for tackling non-integer periodicities. They rely on the Taylor approximation for the seasonal backshift operator:
 
@@ -187,17 +187,17 @@ $$
 
 The first trend estimation is thanks to a generalization of the centred and symmetrical moving averages with an order equal to the periodicity $p$.
 
--   filter length $l$: smallest odd integer greater than $p$
+- filter length $l$: smallest odd integer greater than $p$
 
--   examples: $p=7 \rightarrow l=7$, $p=12 \rightarrow l=13$, $p=365.25 \rightarrow l=367$, $p=52.18 \rightarrow l=53$
+- examples: $p=7 \rightarrow l=7$, $p=12 \rightarrow l=13$, $p=365.25 \rightarrow l=367$, $p=52.18 \rightarrow l=53$
 
--   central coefficients $1/p$ (1/12,1/7, 1/365.25)
+- central coefficients $1/p$ (1/12,1/7, 1/365.25)
 
--   end-point coefficients $\mathbb{I} \{\text{$E(p)$ even}\} +(p-E(p)) /2p$
+- end-point coefficients $\mathbb{I} \{\text{$E(p)$ even}\} +(p-E(p)) /2p$
 
--   example for $p=12$: ($1/12$ and $1/24$) (we fall back on $M_{2\times12}$ of the monthly case
+- example for $p=12$: ($1/12$ and $1/24$) (we fall back on $M_{2\times12}$ of the monthly case
 
--   example for $p=365.25$: ($1/365.25$ and $0.25/(2*365.25)$)
+- example for $p=365.25$: ($1/365.25$ and $0.25/(2*365.25)$)
 
 #### Modification of seasonality extraction filters
 
@@ -223,7 +223,7 @@ Here the raw series is daily and displays two periodicities $p=7$ and $p=365.25$
 
 ```{r, echo = TRUE, eval = FALSE}
 # extraction of day-of-the-week pattern (dow)
-x11.dow <- rjd3x11plus::x11plus(y_linearized,
+x11.dow <- rjd3highfreq::x11plus(y_linearized,
     period = 7, # DOW pattern
     mul = TRUE,
     trend.horizon = 9, # 1/2 Filter length : not too long vs p
@@ -235,7 +235,7 @@ x11.dow <- rjd3x11plus::x11plus(y_linearized,
 ) # Sigma-limits
 
 # extraction of day-of-the-week pattern (doy)
-x11.doy <- rjd3x11plus::x11plus(x11.dow$decomposition$sa, # previous sa
+x11.doy <- rjd3highfreq::x11plus(x11.dow$decomposition$sa, # previous sa
     period = 365.2425, # DOY pattern
     mul = TRUE,
     trend.horizon = 371, # 1/2 final filter length
@@ -268,15 +268,15 @@ For the time being, seasonal adjustment processing in rjd3highfreq cannot be enc
 
 The user has to run the steps one by one, here is an example with $p=7$ and $p=365.25$
 
--   computation of the linearized series $Y_{lin}=ExtendedAirline(Y)$
+- computation of the linearized series $Y_{lin}=ExtendedAirline(Y)$
 
--   computation of the calendar corrected series $Y_{cal}$
+- computation of the calendar corrected series $Y_{cal}$
 
--   computation of $S_{7}$ by decomposition of the linearized series
+- computation of $S_{7}$ by decomposition of the linearized series
 
--   computation of $S_{365.25}$ by decomposition of the seasonally adjusted series with $p=7$
+- computation of $S_{365.25}$ by decomposition of the seasonally adjusted series with $p=7$
 
--   finally adjusted series $sa_{final} = Y_{cal}/S_{7}/S_{365.25}$ (if multiplicative model)
+- finally adjusted series $sa_{final} = Y_{cal}/S_{7}/S_{365.25}$ (if multiplicative model)
 
 ### STL decomposition
 

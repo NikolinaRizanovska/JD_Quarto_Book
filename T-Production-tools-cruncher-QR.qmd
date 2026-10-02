@@ -53,7 +53,7 @@ Two R packages are currently available
 
 -   [rjwsacruncher](https://github.com/AQLT/rjwsacruncher) (on CRAN): workspace update and output production
 
--   [JDCruncheR](https://github.com/InseeFr/JDCruncheR) (on CRAN): adds a quality report
+-   [rjd3qr](https://github.com/InseeFr/rjd3qr) (on CRAN): adds a quality report
 
 #### Installation
 
@@ -61,7 +61,7 @@ Two R packages are currently available
 #| eval: false
 #| label: Installation cruncher R packages
 
-install.packages(c("rjwsacruncher", "JDCruncheR"))
+install.packages(c("rjwsacruncher", "rjd3qr"))
 ```
 
 
@@ -72,7 +72,7 @@ install.packages(c("rjwsacruncher", "JDCruncheR"))
 #| label: Chargement cruncher R packages
 
 library("rjwsacruncher")
-library("JDCruncheR")
+library("rjd3qr")
 ```
 
 
@@ -175,9 +175,9 @@ tramo seats
 what is not relevant in each case 
 
 
-## Quality Report with JDCruncheR
+## Quality Report with rjd3qr
 
-The JDCruncheR package:
+The **rjd3qr** package:
 
 -   computes a quality score from the diagnostics produced by JDemetra+
 

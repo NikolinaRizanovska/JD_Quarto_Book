@@ -454,7 +454,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#decomposition" id="toc-decomposition" class="nav-link" data-scroll-target="#decomposition">Decomposition</a>
   <ul class="collapse">
-  <li><a href="#extended-x-11" id="toc-extended-x-11" class="nav-link" data-scroll-target="#extended-x-11">Extended X-11</a></li>
+  <li><a href="#fextended-x-11" id="toc-fextended-x-11" class="nav-link" data-scroll-target="#fextended-x-11">FExtended X-11</a></li>
   <li><a href="#arima-model-based-amb-decomposition-extended-seats" id="toc-arima-model-based-amb-decomposition-extended-seats" class="nav-link" data-scroll-target="#arima-model-based-amb-decomposition-extended-seats">ARIMA Model Based (AMB) Decomposition (Extended Seats)</a></li>
   <li><a href="#summary-of-the-process" id="toc-summary-of-the-process" class="nav-link" data-scroll-target="#summary-of-the-process">Summary of the process</a></li>
   <li><a href="#stl-decomposition" id="toc-stl-decomposition" class="nav-link" data-scroll-target="#stl-decomposition">STL decomposition</a></li>
@@ -565,10 +565,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="tailored-algorithms-in-jdemetra">Tailored algorithms in JDemetra+</h2>
 <table class="table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 49%">
-<col style="width: 13%">
-<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 41%">
+<col style="width: 19%">
+<col style="width: 19%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -595,13 +595,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 <td>Extended X-11</td>
 <td>✔️</td>
-<td>rjd3x11plus</td>
+<td>rjd3highfreq</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>Extended STL</td>
 <td>✖</td>
-<td>rjd3stl</td>
+<td>rjd3highfreq</td>
 </tr>
 <tr class="odd">
 <td>One-Step</td>
@@ -616,12 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="unobserved-components">Unobserved Components</h2>
 <section id="raw-series-decomposition" class="level3">
 <h3 class="anchored" data-anchor-id="raw-series-decomposition">Raw series decomposition</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="All_images/SA_HF_unobs_comps.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">[<strong>Decomposition diagram</strong>]</figcaption>
-</figure>
-</div>
+<p>![!<a href="All_images/SA_HF_unobs_comps.png"><strong>Decomposition diagram</strong>]</a></p>
 </section>
 <section id="multiple-seasonal-patterns" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-seasonal-patterns">Multiple seasonal patterns</h3>
@@ -730,8 +725,8 @@ B^{s+\alpha} &amp;\cong&amp; (1 - \alpha)B^s+ \alpha B^{s+1}
 </section>
 <section id="decomposition" class="level2">
 <h2 class="anchored" data-anchor-id="decomposition">Decomposition</h2>
-<section id="extended-x-11" class="level3">
-<h3 class="anchored" data-anchor-id="extended-x-11">Extended X-11</h3>
+<section id="fextended-x-11" class="level3">
+<h3 class="anchored" data-anchor-id="fextended-x-11">FExtended X-11</h3>
 <p>X-11 is the decomposition module of <a href="A-sa.qmd">X-13-ARIMA</a>, the linearized series from the pre-adjustment step is split into seasonal (<span class="math inline">\(S\)</span>), trend (<span class="math inline">\(T\)</span>) and irregular (<span class="math inline">\(I\)</span>) components. In case of multiple periodicities the decomposition is done periodicity by periodicity starting with the smallest one. Global structure of the iterations is the same as in “classical” X-11 but modifications were introduced for tackling non-integer periodicities. They rely on the Taylor approximation for the seasonal backshift operator:</p>
 <p><span class="math display">\[
 \begin{array}{lll}
@@ -769,7 +764,7 @@ M_{3\times3}X = \frac{1}{9}(X_{t-2p})+\frac{2}{9}(X_{t-p})+\frac{3}{9}(X_{t})+\f
 <p>Here the raw series is daily and displays two periodicities <span class="math inline">\(p=7\)</span> and <span class="math inline">\(p=365.25\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extraction of day-of-the-week pattern (dow)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x11.dow <span class="ot">&lt;-</span> rjd3x11plus<span class="sc">::</span><span class="fu">x11plus</span>(y_linearized,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x11.dow <span class="ot">&lt;-</span> rjd3highfreq<span class="sc">::</span><span class="fu">x11plus</span>(y_linearized,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="dv">7</span>, <span class="co"># DOW pattern</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mul =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend.horizon =</span> <span class="dv">9</span>, <span class="co"># 1/2 Filter length : not too long vs p</span></span>
@@ -781,7 +776,7 @@ M_{3\times3}X = \frac{1}{9}(X_{t-2p})+\frac{2}{9}(X_{t-p})+\frac{3}{9}(X_{t})+\f
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>) <span class="co"># Sigma-limits</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># extraction of day-of-the-week pattern (doy)</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x11.doy <span class="ot">&lt;-</span> rjd3x11plus<span class="sc">::</span><span class="fu">x11plus</span>(x11.dow<span class="sc">$</span>decomposition<span class="sc">$</span>sa, <span class="co"># previous sa</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x11.doy <span class="ot">&lt;-</span> rjd3highfreq<span class="sc">::</span><span class="fu">x11plus</span>(x11.dow<span class="sc">$</span>decomposition<span class="sc">$</span>sa, <span class="co"># previous sa</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">period =</span> <span class="fl">365.2425</span>, <span class="co"># DOY pattern</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">mul =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">trend.horizon =</span> <span class="dv">371</span>, <span class="co"># 1/2 final filter length</span></span>

@@ -4,7 +4,7 @@
 
 We try to cast some light at history of the project and be grateful to people who contributed...
 
-If you end up reading this and have elements to share (anecdotes, pictures, articles....), please don't hesitate to write in. Consider also writing a guest blog post [here](https://jdemetra-universe-blog.netlify.app/).
+If you end up reading this and have elements to share (anecdotes, pictures, articles....), please don't hesitate to write in. Consider also writing a guest blog post [here](https://prod.jdemetra.org/).
 
 
 ## Articles 

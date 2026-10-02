@@ -101,9 +101,9 @@ All algorithms are available via an R package and will be available in GUI (in t
 
 -   Extended Airline Decomposition, Seats like (`rjd3highfreq` and GUI )
 
--   MX12+ (`rjd3x11plus`, GUI upcoming)
+-   MX12+ (`rjd3highfreq`, GUI upcoming)
 
--   MSTL+ (`rjd3stl` and in GUI)
+-   MSTL+ (`rjd3highfreq` and in GUI)
 
 -   MSTS (`rjd3sts`, GUI upcoming)
 
